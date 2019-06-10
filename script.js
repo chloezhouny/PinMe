@@ -33,3 +33,20 @@ function displayEvent() {
   }
   console.log("the Event genre id is: " + eventGenre);
 }
+
+var queryURL =
+  "https://www.eventbriteapi.com/v3/events/search/?categories=103&subcategories=" +
+  eventGenre +
+  "&token=HCI6R2VNZXBSOAT5UBT2&expand=venue";
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(response) {
+  console.log(response);
+});
+
+$("#event-genre").on("click", function(event) {
+  event.preventDefault();
+  displayEvent();
+});
