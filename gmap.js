@@ -30,7 +30,18 @@
 					  map: map
 					, position: position
 					, title: location[ 0 ]
-				});
+        });
+        
+        // create info window and add to marker (https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions)
+				google.maps.event.addListener( marker, 'click', ( 
+					function( marker, i ) {
+						return function() {
+							var infowindow = new google.maps.InfoWindow();
+							infowindow.setContent( labels[i]);
+							infowindow.open( map, marker );
+						}
+					}
+				)( marker, i ) );
 				
             };
 
