@@ -1,3 +1,34 @@
+var locations = [];
+
+var labels = [];
+
+var gate = false;
+
+var eventGenre = $("#event-input").val();
+
+var userlong;
+var userlat;
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+}
+
+function showPosition(position) {
+  console.log(
+    "Latitude: " +
+      position.coords.latitude +
+      " Longitude: " +
+      position.coords.longitude
+  );
+  userlong = position.coords.longitude;
+  userlat = position.coords.latitude;
+}
+
+getLocation();
+
 function displayEvent() {
   var genre = [
     {
@@ -23,7 +54,7 @@ function displayEvent() {
     { id: 3018, name: "top 40" },
     { id: 3099, name: "other" }
   ];
-  var eventGenre = $("#event-input").val();
+
   eventGenre = eventGenre.toLowerCase();
   console.log("this is event genre" + eventGenre);
   for (i = 0; i < genre.length; i++) {
@@ -32,20 +63,35 @@ function displayEvent() {
     }
   }
   console.log("the Event genre id is: " + eventGenre);
+
+  var queryURL =
+    "https://www.eventbriteapi.com/v3/events/search/?categories=103&subcategories=" +
+    eventGenre +
+    "&token=HCI6R2VNZXBSOAT5UBT2&expand=venue&location.latitude=" +
+    userlat +
+    "&location.longitude=" +
+    userlong +
+    "&location.within=100mi";
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+
+    for (n = 0; n < 10; n++) {
+      var eventloc = [];
+      eventloc.push(response.events[n].venue.latitude);
+      eventloc.push(response.events[n].venue.longitude);
+      locations.push(eventloc);
+      if (n === 9) {
+        gate = true;
+        console.log("yes");
+      }
+    }
+    console.log(locations);
+  });
 }
-
-var queryURL =
-  "https://www.eventbriteapi.com/v3/events/search/?categories=103&subcategories=" +
-  eventGenre +
-  "&token=HCI6R2VNZXBSOAT5UBT2&expand=venue";
-
-$.ajax({
-  url: queryURL,
-  method: "GET"
-}).then(function(response) {
-  console.log(response);
-});
-
 $("#event-genre").on("click", function(event) {
   event.preventDefault();
   displayEvent();
