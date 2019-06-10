@@ -22,7 +22,15 @@
 				var position = new google.maps.LatLng( location[ 0 ], location[ 1 ] );
 				
 				// add position to bounds
-				bounds.extend( position );
+        bounds.extend( position );
+        
+        // create marker (https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions)
+				marker = new google.maps.Marker({
+					/*animation: google.maps.Animation.DROP */
+					  map: map
+					, position: position
+					, title: location[ 0 ]
+				});
 				
             };
 
