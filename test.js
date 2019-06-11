@@ -4,7 +4,7 @@ var topicsSearch = ["classical", "rock", "jazz", "blues", "hip-pop", "country", 
  "10", "11"];
 var userAdd = false;
 var start = true;
-var token;
+var token1;
 
 
 
@@ -53,13 +53,13 @@ function getSpotifyToken()
 	var clientSecret = 'e84f853c2b784addb982d679f609d73a';
 	var encodedData = window.btoa(clientId + ':' + clientSecret);
 
-
-
-	jQuery.ajaxPrefilter(function(options) {
+	console.log("HI");
+		jQuery.ajaxPrefilter(function(options) {
 	    if (options.crossDomain && jQuery.support.cors) {
 	        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
 	    }
 	});
+
 
 		$.ajax({
 		    method: "POST",
@@ -75,20 +75,84 @@ function getSpotifyToken()
 		})
 		    .then (function(result) {
 		      console.log(result);
-		      token = result.access_token;
+		      token1 = result.access_token;
 		 });
 
 
 }
 
 
+console.log("Hi");
 getButton();
+console.log("Hi");
 getSpotifyToken();
+console.log("Hi");
+
+/*
+
+window.onSpotifyWebPlaybackSDKReady = () => {
+  // You can now initialize Spotify.Player and use the SDK
+  	const token = "BQDmhnNczRmQCgZw0_kyvdWS7j4PSx2Z3TB9jMfK3p0e1S3BGHIAEiuWTnO-LRLDWsmEcAr1f07jK9M9_6az5JAgfmm5FpttxZL1HRW11uPjfYzomb_VGOT344v4vW4D80R23-Vgxbg9ZAaf12QXKaQ2mDlq6FVLV2ZJITdV";
+   const player = new Spotify.Player({
+
+        name: 'Web Playback SDK Quick Start Player',
+        getOAuthToken: cb => { cb(token); }
+ 
+  });
+// Error handling
+      player.addListener('initialization_error', ({ message }) => { console.error(message); });
+      player.addListener('authentication_error', ({ message }) => { console.error(message); });
+      player.addListener('account_error', ({ message }) => { console.error(message); });
+      player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+      // Playback status updates
+      player.addListener('player_state_changed', state => { console.log(state); });
+
+      // Ready
+      player.addListener('ready', ({ device_id }) => {
+        console.log('Ready with Device ID', device_id);
+      });
+
+      // Not Ready
+      player.addListener('not_ready', ({ device_id }) => {
+        console.log('Device ID has gone offline', device_id);
+      });
+
+      // Connect to the player!
+      player.connect();
+    };
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(document).on("click", ".options", function()
 {
 
 	$("#playlistDiv").text("");
+	console.log(token1);
+	
 	var topicSearch = $(this).attr("data-fitness");
 	var state = $(this).attr("data-state");
 	var playlistURL = "https://api.spotify.com/v1/search?q=" + topicSearch + "&type=playlist&limit=10";	
@@ -102,7 +166,7 @@ $(document).on("click", ".options", function()
 			Accept: "application/json",
 			ContentType: "application/json",
 			headers: {
-			"Authorization": "Bearer "+ token}
+			"Authorization": "Bearer "+ token1}
 
 		})
 		.then(function(response){
