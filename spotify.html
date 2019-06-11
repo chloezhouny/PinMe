@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
 
 
 </head>
@@ -18,10 +17,24 @@
 
 
 	<main>
-						
+			<form class="form-inline d-block" id='search'>
+		    				<input class="form-control form-control-sm mr-sm-2 bg-light" type="search" placeholder="Add your workout" id = "add" aria-label="Search">
+		    				<button class="btn btn-light btn-sm " type="submit" id="submit">↖︎</button>
+		  	</form>
+		  	<div class = "mr-0" id = "buttons-container">				
+			</div>
 			<div id = "playlistDiv">				
 			</div>
 	</main>
-<script src = "spotify.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript" src= "spotify.js"></script>
+
+
+
+
 </body>
 </html>
