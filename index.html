@@ -5,19 +5,101 @@
     <meta name="viewport" content="width=`, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
-    <h1 id="test-line"></h1>
-    <form id="event-form">
-      <label for="event-input">Search event</label>
-      <input type="text" id="event-input" />
-      <br />
-      <!-- Button triggers new movie to be added -->
-      <input id="event-genre" type="submit" value="Add a genre" />
-    </form>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1 col-sm-12"></div>
+        <div class="col-md-10 col-sm-12">
+          <div
+            class="jumbotron"
+            style="color: white; text-shadow: 3px 3px black "
+          >
+            <h1 class="font-weight-bold text-center">Amazing app</h1>
+            <h3 class="text-center">
+              <!-- Add a description -->
+            </h3>
+          </div>
 
-    <script src="script.js"></script>
+          <h1 id="test-line"></h1>
+          <h3>Search your event</h3>
+          <form>
+            <div class="form-group">
+              <select id="event-input" class="custom-select">
+                <option selected>any</option>
+                <option value="3001">alternative</option>
+                <option value="3002">blues & jazz</option>
+                <option value="3003">classical</option>
+                <option value="3004">culture</option>
+                <option value="3006">edm/electronic</option>
+                <option value="3007">folk</option>
+                <option value="3008">hip hop/rap</option>
+                <option value="3009">indie</option>
+                <option value="3010">latin</option>
+                <option value="3011">metal</option>
+                <option value="3012">opera</option>
+                <option value="3013">pop</option>
+                <option value="3014">r&b</option>
+                <option value="3015">reggae</option>
+                <option value="3016">religious/spiritual</option>
+                <option value="3017">rock</option>
+                <option value="3018">top 40</option>
+                <option value="3099">other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <select id="price" class="custom-select">
+                <option selected>Any price</option>
+                <option value="free">free</option>
+                <option value="paid">paid</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select id="date" class="custom-select">
+                <option selected>Any date</option>
+                <option value="today">today</option>
+                <option value="tomorrow">tomorrow</option>
+                <option value="this_week">this week</option>
+                <option value="this_weekend">this weekend</option>
+                <option value="next_week">next week</option>
+                <option value="this_month">this month</option>
+                <option value="next_month">next month</option>
+              </select>
+            </div>
+
+            <!-- Button triggers new movie to be added -->
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="event-genre"
+              value="Add a genre"
+            >
+              Search
+            </button>
+          </form>
+
+          <script src="script.js"></script>
+        </div>
+        <div class="col-md-1 col-sm-12"></div>
+      </div>
+    </div>
   </body>
 </html>
