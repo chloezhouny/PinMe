@@ -41,6 +41,7 @@
     />
     <title>PINME</title>
   </head>
+
   <body>
     <div class="container">
       <div class="jumbotron">
@@ -102,15 +103,17 @@
         </div>
 
         <!-- Button triggers new movie to be added -->
-        <button
-          type="submit"
-          class="btn"
-          id="event-genre"
-          value="Add a genre"
-          onclick="window.location.href='page2.html'"
-        >
-          Search
-        </button>
+        <a href="page2.html" target="_blank">
+          <button
+            type="submit"
+            class="btn"
+            id="event-genre"
+            value="Add a genre"
+          >
+            Search
+          </button>
+        </a>
+        <a href="page2.html">Test</a>
       </form>
 
       <div class="main-carousel">
@@ -126,6 +129,14 @@
         <div class="carousel-cell" value="10"></div>
         <div class="carousel-cell" value="11"></div>
       </div>
+
+      <!-- 
+      <div class="results">
+        <div class="rowResult">
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+      </div> -->
 
       <script src="script.js"></script>
     </div>

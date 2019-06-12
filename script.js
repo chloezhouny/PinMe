@@ -6,7 +6,9 @@ var gate = false;
 
 var userlong;
 var userlat;
-
+window.onload = function() {
+  displayEvent;
+};
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -26,43 +28,42 @@ function showPosition(position) {
   userlat = position.coords.latitude;
 }
 
-getLocation();
-
-function displayEvent() {
-  //debugger;
-
+function getURL() {
+  debugger;
   var price = $("#price").val();
   var eventGenre = $("#event-input").val();
   var date = $("#date").val();
   var queryURL;
+  var basicURL =
+    "https://www.eventbriteapi.com/v3/events/search/?sort_by=date&categories=103&token=HCI6R2VNZXBSOAT5UBT2&expand=venue&location.latitude=" +
+    userlat +
+    "&location.longitude=" +
+    userlong +
+    "&location.within=100mi";
 
-  function getURL() {
-    var basicURL =
-      "https://www.eventbriteapi.com/v3/events/search/?sort_by=date&categories=103&token=HCI6R2VNZXBSOAT5UBT2&expand=venue&location.latitude=" +
-      userlat +
-      "&location.longitude=" +
-      userlong +
-      "&location.within=100mi";
+  // if (
+  //   eventGenre == "Any genre" &&
+  //   price == "Any price" &&
+  //   date == "Any date"
+  // ) {
+  queryURL = basicURL;
 
-    // if (
-    //   eventGenre == "Any genre" &&
-    //   price == "Any price" &&
-    //   date == "Any date"
-    // ) {
-      queryURL = basicURL;
-    }
-    if (price !== "Any price") {
-      queryURL = queryURL + "&price=" + price;
-    }
-    if (eventGenre !== "Any genre") {
-      queryURL = queryURL + "&subcategories=" + eventGenre;
-    }
-    if (date !== "Any date") {
-      queryURL = queryURL + "&start_date.keyword=" + date;
-    }
-    return queryURL;
+  if (price !== "Any price") {
+    queryURL = queryURL + "&price=" + price;
   }
-  getURL();
+  if (eventGenre !== "Any genre") {
+    queryURL = queryURL + "&subcategories=" + eventGenre;
+  }
+  if (date !== "Any date") {
+    queryURL = queryURL + "&start_date.keyword=" + date;
+  }
+  return queryURL;
+}
+
+function displayEvent() {
+  //debugger;
+
+  var queryURL = getURL();
 
   var bufferIntObj = {
     template: 2,
@@ -116,6 +117,7 @@ function displayEvent() {
     console.log(locations);
   });
 }
+
 $("#event-genre").on("click", function(event) {
   event.preventDefault();
   displayEvent();
@@ -136,16 +138,18 @@ $(".main-carousel").flickity({
 //     ContentType: "application/json",
 //     headers: {
 //     "Authorization": "Bearer "+ token1}
-// ​
+//
 // })
 // .then(function(response){
 //     console.log(response);
 //     for(var i = 0; i<4; i++)
 // {
-// ​
+//
 //     var result = response.playlists;
 //     var playlistURL = result.items[i].external_urls.spotify;
-// ​
+//
 //     var imgURL = result.items[i].images[0].url;
 // }
 //
+
+getLocation();
