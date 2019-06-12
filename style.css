@@ -1,3 +1,66 @@
 form {
   display: flex;
+  flex-direction: column;
+
+  background: rgba(250, 219, 200, 0.7);
+  padding: 20px 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+.groups {
+  display: flex;
+  justify-content: space-around;
+}
+form h3 {
+  float: none;
+}
+.jumbotron {
+  background: rgba(250, 219, 200, 0.7);
+  display: flex;
+  justify-content: center;
+  padding: 25px !important;
+  margin: 15px 0;
+}
+.jumbotron img {
+  margin-right: 40px;
+}
+.jumbotron h1 {
+  font-family: "Audiowide", cursive;
+  font-size: 60pt;
+  color: black;
+  text-shadow: 3px 3px#FF7E93;
+  letter-spacing: 5px;
+}
+.form-group {
+  margin-right: 15px;
+  flex: 1;
+}
+body {
+  background: url(kuva4_nettiin.jpg) center;
+}
+/* footer {
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(3, 3, 3, 0.8);
+} */
+#event-genre {
+  height: 38px;
+  width: 150px;
+  background-color: black;
+  color: white;
+}
+.main-carousel {
+  padding: 10px;
+}
+.carousel-cell {
+  width: 220px;
+  margin: 10px;
+  height: 220px;
+  background-color: rgba(250, 219, 200, 0.7);
+}
+.carousel-cell h3 {
+  text-align: center;
+  margin: 100px 0;
 }
