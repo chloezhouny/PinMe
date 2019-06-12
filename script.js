@@ -59,23 +59,30 @@ function displayEvent() {
     console.log(response);
     bufferProgress.end();
     var events = response.events;
-    var newEvent = $("<div>");
-    var eventImg = $("<img>")
-      .attr("src", events[0].logo.original.url)
-      .addClass("image");
-    var eventName = $("<p>").text(events[0].name.text);
-    var eventSum = $("<p>").text(events[0].summary);
-    var venueName = $("<p>").text(events[0].venue.name);
-    var eventStart = $("<p>").text(events[0].start.local);
-    var eventURL = $("<p>").text(events[0].venue.resource_uri);
-    newEvent.append(eventImg);
-    newEvent.append(eventName);
-    newEvent.append(eventSum);
-    newEvent.append(venueName);
+    for (var i = 0; i < events.length; i++) {
+      var newEvent = $("<div>").addClass("eventDiv");
+      var eventImg = $("<img>")
+        .attr("src", events[i].logo.url)
+        .addClass("image");
+      var eventName = $("<h3>").text(events[i].name.text);
+      var eventSum = $("<p>").text(events[i].summary);
+      var venueName = $("<p>").text(events[i].venue.name);
+      var eventStart = $("<p>").text(events[i].start.local);
+      var eventURL = $("<a />", {
+        href: events[i].url,
+        text: "read more"
+      });
 
-    newEvent.append(eventStart);
-    newEvent.append(eventURL);
-    $(".results").append(newEvent);
+      newEvent.append(eventName);
+      newEvent.append(eventImg);
+
+      newEvent.append(eventSum);
+      newEvent.append(eventStart);
+      newEvent.append(venueName);
+
+      newEvent.append(eventURL);
+      $($(".col")[i % 2]).append(newEvent);
+    }
 
     // is this google map api?
     for (n = 0; n < 10; n++) {

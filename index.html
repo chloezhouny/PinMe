@@ -43,97 +43,85 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-1 col-md-12 col-sm-12"></div>
-        <div class="col-lg-10 col-md-12 col-sm-12">
-          <div class="jumbotron">
-            <img src="image.png" width="80px" />
-            <h1 class="font-weight-bold text-center">PINME</h1>
-            <h3 class="text-center">
-              <!-- Add a description -->
-            </h3>
-          </div>
-
-          <h1 id="test-line"></h1>
-
-          <form>
-            <h3>Search your event</h3>
-            <div class="groups">
-              <div class="form-group">
-                <select id="event-input" class="custom-select">
-                  <option selected>Any genre</option>
-                  <option value="3001">alternative</option>
-                  <option value="3002">blues & jazz</option>
-                  <option value="3003">classical</option>
-                  <option value="3004">culture</option>
-                  <option value="3006">edm/electronic</option>
-                  <option value="3007">folk</option>
-                  <option value="3008">hip hop/rap</option>
-                  <option value="3009">indie</option>
-                  <option value="3010">latin</option>
-                  <option value="3011">metal</option>
-                  <option value="3012">opera</option>
-                  <option value="3013">pop</option>
-                  <option value="3014">r&b</option>
-                  <option value="3015">reggae</option>
-                  <option value="3016">religious/spiritual</option>
-                  <option value="3017">rock</option>
-                  <option value="3018">top 40</option>
-                  <option value="3099">other</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <select id="price" class="custom-select">
-                  <option selected>Any price</option>
-                  <option value="free">free</option>
-                  <option value="paid">paid</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <select id="date" class="custom-select">
-                  <option selected>Any date</option>
-                  <option value="today">today</option>
-                  <option value="tomorrow">tomorrow</option>
-                  <option value="this_week">this week</option>
-                  <option value="this_weekend">this weekend</option>
-                  <option value="next_week">next week</option>
-                  <option value="this_month">this month</option>
-                  <option value="next_month">next month</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Button triggers new movie to be added -->
-            <button
-              type="submit"
-              class="btn"
-              id="event-genre"
-              value="Add a genre"
-            >
-              Search
-            </button>
-          </form>
-          <div class="results"></div>
-
-          <div class="main-carousel">
-            <div class="carousel-cell" value="1"></div>
-            <div class="carousel-cell" value="2"></div>
-            <div class="carousel-cell" value="3"></div>
-            <div class="carousel-cell" value="4"></div>
-            <div class="carousel-cell" value="5"></div>
-            <div class="carousel-cell" value="6"></div>
-            <div class="carousel-cell" value="7"></div>
-            <div class="carousel-cell" value="8"></div>
-            <div class="carousel-cell" value="9"></div>
-            <div class="carousel-cell" value="10"></div>
-            <div class="carousel-cell" value="11"></div>
-          </div>
-
-          <script src="script.js"></script>
-        </div>
-        <div class="col-lg-1 col-md-12 col-sm-12"></div>
+      <div class="jumbotron">
+        <img src="image.png" width="80px" />
+        <h1 class="font-weight-bold text-center">PINME</h1>
+        <h3 class="text-center">
+          <!-- Add a description -->
+        </h3>
       </div>
+
+      <h1 id="test-line"></h1>
+
+      <form>
+        <h3>Search your event</h3>
+        <div class="groups">
+          <div class="form-group">
+            <select id="event-input" class="custom-select">
+              <option selected>Any genre</option>
+              <option value="3001">alternative</option>
+              <option value="3002">blues & jazz</option>
+              <option value="3003">classical</option>
+              <option value="3004">culture</option>
+              <option value="3006">edm/electronic</option>
+              <option value="3007">folk</option>
+              <option value="3008">hip hop/rap</option>
+              <option value="3009">indie</option>
+              <option value="3010">latin</option>
+              <option value="3011">metal</option>
+              <option value="3012">opera</option>
+              <option value="3013">pop</option>
+              <option value="3014">r&b</option>
+              <option value="3015">reggae</option>
+              <option value="3016">religious/spiritual</option>
+              <option value="3017">rock</option>
+              <option value="3018">top 40</option>
+              <option value="3099">other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <select id="price" class="custom-select">
+              <option selected>Any price</option>
+              <option value="free">free</option>
+              <option value="paid">paid</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select id="date" class="custom-select">
+              <option selected>Any date</option>
+              <option value="today">today</option>
+              <option value="tomorrow">tomorrow</option>
+              <option value="this_week">this week</option>
+              <option value="this_weekend">this weekend</option>
+              <option value="next_week">next week</option>
+              <option value="this_month">this month</option>
+              <option value="next_month">next month</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Button triggers new movie to be added -->
+        <button type="submit" class="btn" id="event-genre" value="Add a genre">
+          Search
+        </button>
+      </form>
+
+      <div class="main-carousel">
+        <div class="carousel-cell" value="1"></div>
+        <div class="carousel-cell" value="2"></div>
+        <div class="carousel-cell" value="3"></div>
+        <div class="carousel-cell" value="4"></div>
+        <div class="carousel-cell" value="5"></div>
+        <div class="carousel-cell" value="6"></div>
+        <div class="carousel-cell" value="7"></div>
+        <div class="carousel-cell" value="8"></div>
+        <div class="carousel-cell" value="9"></div>
+        <div class="carousel-cell" value="10"></div>
+        <div class="carousel-cell" value="11"></div>
+      </div>
+
+      <script src="script.js"></script>
     </div>
     <!-- <footer>xxx</footer> -->
   </body>
