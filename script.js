@@ -34,18 +34,35 @@ function displayEvent() {
   var price = $("#price").val();
   var eventGenre = $("#event-input").val();
   var date = $("#date").val();
+  var queryURL;
 
-  var queryURL =
-    "https://www.eventbriteapi.com/v3/events/search/?sort_by=date&categories=103&subcategories=" +
-    eventGenre +
-    "&token=HCI6R2VNZXBSOAT5UBT2&expand=venue&location.latitude=" +
-    userlat +
-    "&location.longitude=" +
-    userlong +
-    "&location.within=100mi&price=" +
-    price +
-    "&start_date.keyword=" +
-    date;
+  function getURL() {
+    var basicURL =
+      "https://www.eventbriteapi.com/v3/events/search/?sort_by=date&categories=103&token=HCI6R2VNZXBSOAT5UBT2&expand=venue&location.latitude=" +
+      userlat +
+      "&location.longitude=" +
+      userlong +
+      "&location.within=100mi";
+
+    // if (
+    //   eventGenre == "Any genre" &&
+    //   price == "Any price" &&
+    //   date == "Any date"
+    // ) {
+      queryURL = basicURL;
+    }
+    if (price !== "Any price") {
+      queryURL = queryURL + "&price=" + price;
+    }
+    if (eventGenre !== "Any genre") {
+      queryURL = queryURL + "&subcategories=" + eventGenre;
+    }
+    if (date !== "Any date") {
+      queryURL = queryURL + "&start_date.keyword=" + date;
+    }
+    return queryURL;
+  }
+  getURL();
 
   var bufferIntObj = {
     template: 2,
@@ -57,6 +74,7 @@ function displayEvent() {
     method: "GET"
   }).then(function(response) {
     console.log(response);
+    console.log(queryURL);
     bufferProgress.end();
     var events = response.events;
     for (var i = 0; i < events.length; i++) {

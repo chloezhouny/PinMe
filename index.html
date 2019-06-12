@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=`, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- Firebase References -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
@@ -39,13 +39,13 @@
       href="https://fonts.googleapis.com/css?family=Audiowide&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>PINME</title>
   </head>
   <body>
     <div class="container">
       <div class="jumbotron">
         <img src="image.png" width="80px" />
-        <h1 class="font-weight-bold text-center">PINME</h1>
+        <h1 class="font-weight-bold text-center">pinME</h1>
         <h3 class="text-center">
           <!-- Add a description -->
         </h3>
@@ -102,7 +102,13 @@
         </div>
 
         <!-- Button triggers new movie to be added -->
-        <button type="submit" class="btn" id="event-genre" value="Add a genre">
+        <button
+          type="submit"
+          class="btn"
+          id="event-genre"
+          value="Add a genre"
+          onclick="window.location.href='page2.html'"
+        >
           Search
         </button>
       </form>
