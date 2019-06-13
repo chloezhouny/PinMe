@@ -27,7 +27,7 @@ function showPosition(position) {
 }
 
 function getURL() {
-  debugger;
+  // debugger;
   var price = $("#price").val();
   var eventGenre = $("#event-input").val();
   var date = $("#date").val();
@@ -76,7 +76,7 @@ function displayEvent() {
     console.log(queryURL);
     bufferProgress.end();
     var events = response.events;
-    for (var i = 0; i < events.length; i++) {
+    for (var i = 0; i < 10; i++) {
       var newEvent = $("<div>").addClass("eventDiv");
       var eventImg = $("<img>")
         .attr("src", events[i].logo.url)
@@ -99,14 +99,12 @@ function displayEvent() {
 
       newEvent.append(eventURL);
       $($(".col")[i % 2]).append(newEvent);
-    }
 
-    // is this google map api?
-    for (n = 0; n < 10; n++) {
       var eventloc = [];
-      eventloc.push(events[n].venue.latitude);
-      eventloc.push(events[n].venue.longitude);
+      eventloc.push(events[i].venue.latitude);
+      eventloc.push(events[i].venue.longitude);
       locations.push(eventloc);
+      labels.push("<div><b>Event:</b> " + response.events[i].name.html + "</div><div><b>Venue:</b> " + response.events[i].venue.name)
     }
     console.log(locations);
   });
@@ -152,6 +150,8 @@ getLocation();
 
 //Google Maps script
 
+var markers = [];
+
 setTimeout(initMap(),1000);
 function initMap() {
 
@@ -163,13 +163,14 @@ function initMap() {
   });
   
   var bounds = new google.maps.LatLngBounds();
-  
+
   $("#event-genre").on("click", function(event) {
     event.preventDefault();
+    clearMarkers()
       console.log(locations.length)
       var marker;
 
- 
+setTimeout(function() { 
 // loop through locations and add to map
 for ( var i = 0; i < locations.length; i++ )
 {
@@ -189,6 +190,8 @@ for ( var i = 0; i < locations.length; i++ )
     , position: position
     , title: location[ 0 ]
   });
+
+  markers.push(marker);
   
   // create info window and add to marker (https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions)
   google.maps.event.addListener( marker, 'click', ( 
@@ -202,8 +205,8 @@ for ( var i = 0; i < locations.length; i++ )
   )( marker, i ) );
       };
     
-  })
-
+  },3000)
+}) 
 
 var infoWindow = new google.maps.InfoWindow;
 if (navigator.geolocation) {
@@ -235,4 +238,21 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 }
+
+
+
+
+   // Sets the map on all markers in the array.
+   function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
+
+  // Removes the markers from the map.
+  function clearMarkers() {
+    setMapOnAll(null);
+    locations = [];
+    labels = [];
+  }
 
