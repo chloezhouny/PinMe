@@ -159,7 +159,7 @@ var markers = [];
 setTimeout(initMap(),1000);
 function initMap() {
 
-  var myLatlng = new google.maps.LatLng(37.36, -121.96)
+  var myLatlng = new google.maps.LatLng(67.880605, 12.982618)
 
   
   var map = new google.maps.Map(document.getElementById('map'), {
