@@ -26,56 +26,88 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-
-    <!-- CSS Stylesheet -->
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="style.css">
 
-
-
-    <title>Document</title>
+  <title>Document</title>
   </head>
   <body>
-    <div class="container">
-        
-      <h1 id="test-line"></h1>
-
-      <form>
-        <div class="form-group">
-          <label for="event-input">Search event</label>
-          <input type="text" id="event-input" />
-        </div>
-        <div class="form-group">
-          <select id="price" class="custom-select">
-            <option selected>Any price</option>
-            <option value="free">free</option>
-            <option value="paid">paid</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <select id="date" class="custom-select">
-            <option selected>Any date</option>
-            <option value="today">today</option>
-            <option value="tomorrow">tomorrow</option>
-            <option value="this_week">this week</option>
-            <option value="this_weekend">this weekend</option>
-            <option value="next_week">next week</option>
-            <option value="this_month">this month</option>
-            <option value="next_month">next month</option>
-          </select>
-        </div>
-
-        <!-- Button triggers new movie to be added -->
-        <button
-          type="submit"
-          class="btn btn-primary"
-          id="event-genre"
-          value="Add a genre"
-        >
-          Search
-        </button>
-      </form>
-
-      <script src="api.js"></script>
+    <div class="container col-md-12">
+      <h1 id="test-0"><img src="image.png" id="logo" alt="logo"></h1>
+      <h1 id="test-1">P</h1>
+      <h1 id="test-2">i</h1>
+      <h1 id="test-3">n</h1>
+      <h1 id="test-4">M</h1>
+      <h1 id="test-5">E</h1>
+      <section class="color">
+      </section>
     </div>
-  </body>
+    <!-- Anime JS -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+      <!-- <script src="api.js"></script> -->
+
+  <script>
+  function gradientChange(){
+  for(i=0; i<10; i++){
+  var newDiv = $("<div>");
+  newDiv.addClass('div');
+  newDiv.addClass('c'+i);
+  $(".color").append(newDiv);
+}
+}
+gradientChange();
+
+function dynoColor(){
+  for(i=0; i<10; i++){
+    var red = Math.floor(Math.random()*10)+25*i;
+    var green = Math.floor(Math.random()*10)+25*i;
+    var blue = Math.floor(Math.random()*10)+25*i;
+    $(".c"+i).css("backgroundColor", "rgb(" + red + "," + green + "," + blue + ")");
+  }
+}
+setInterval(dynoColor,250);
+
+// Anime.js Animations
+        var tl = anime.timeline({
+          easing: 'easeOutExpo',
+          duration: 750
+        })
+
+        tl.add ({
+          targets: '.div',
+          width:'100%',
+          opacity:'0.8',
+          delay:anime.stagger(100)
+        })
+        
+        tl.add ({
+          targets: '.c3, .c4, .c5, .c6, .c7, .c8, .c9',
+          width: '75%',
+          opacity: '0.8',
+        })
+
+        tl.add ({
+          targets: '.c0, .c1, .c2',
+          width: '0%',
+          opacity: '0.8',
+        })
+        for (i=0; i<7;i++){
+        tl.add ({
+          targets: 'h1',
+          top:'20%',
+          opacity: 1,
+          delay:anime.stagger(500)
+        })
+      }
+
+// function loadMain(){
+//  $(".container").addClass('animated lightSpeedOut delay-1s');
+// }
+// $(document).ready(function(){
+// setTimeout(loadMain,20000);
+// });
+
+      </script>
+    </body>
 </html>
