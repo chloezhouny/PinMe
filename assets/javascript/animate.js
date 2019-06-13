@@ -54,8 +54,11 @@ var tl = anime.timeline({
       }
 
       function loadMain(){
- $(".container").addClass('animated lightSpeedOut delay-1s');
+ $("#intro").addClass('animated lightSpeedOut delay-1s').delay(2000).fadeOut();
+ $("#mainbody").delay(2200).fadeIn();
+ console.log("Fade out")  
 }
 $(document).ready(function(){
-setTimeout(loadMain,10000);
+setTimeout(loadMain,7000);
+console.log("doc ready chk")
 });

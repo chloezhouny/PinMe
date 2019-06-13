@@ -1,0 +1,178 @@
+form {
+  display: flex;
+  flex-direction: column;
+
+  background: rgba(250, 219, 200, 0.8);
+  padding: 20px 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+.groups {
+  display: flex;
+  justify-content: space-around;
+}
+form h3 {
+  float: none;
+}
+.jumbotron {
+  background: rgba(250, 219, 200, 0.8);
+  display: flex;
+  justify-content: center;
+  padding: 25px !important;
+  margin: 15px 0;
+}
+.jumbotron img {
+  margin-right: 40px;
+}
+.jumbotron h1 {
+  font-family: "Audiowide", cursive;
+  font-size: 60pt;
+  color: black;
+  text-shadow: 3px 3px#FF7E93;
+  letter-spacing: 5px;
+}
+.form-group {
+  margin-right: 15px;
+  flex: 1;
+}
+body {
+  background: url(../images/kuva4_nettiin.jpg) center;
+}
+
+#event-genre {
+  height: 38px;
+  width: 150px;
+  background-color: black;
+  color: white;
+}
+.main-carousel {
+  padding: 10px;
+  margin-bottom: 50px;
+}
+.carousel-cell {
+  width: 220px;
+  margin: 10px;
+  height: 220px;
+  background-color: rgba(250, 219, 200, 0.8);
+}
+.carousel-cell h3 {
+  text-align: center;
+  margin: 100px 0;
+}
+
+.rowResult {
+  display: flex;
+}
+.col {
+  flex: 1;
+  width: 50%;
+  padding: 0 !important;
+}
+.eventDiv {
+  background-color: rgba(250, 219, 200, 0.8);
+  padding: 15px;
+  margin: 10px;
+}
+.image {
+  width: 100%;
+}
+@media only screen and (min-width: 990px) {
+  body {
+    padding: 0 100px;
+  }
+}
+@media only screen and (min-width: 1100px) {
+  body {
+    padding: 0 150px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .rowResult {
+    flex-direction: column;
+  }
+  .col {
+    width: 100%;
+  }
+}
+
+#map {
+  height: 500px;
+  width: 800px;
+  margin: auto;
+}
+
+#mainbody {
+  display: none;
+}
+
+#intro {
+  margin:0;
+  height:100vh;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  overflow:hidden;
+}
+
+
+.color {
+  display: grid;
+  grid-template-columns: repeat(10,auto);
+}
+
+.div {
+  height:100vh;
+}
+#test-0 {
+  font-size: 5em;
+  position: absolute;
+  top: 18%;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+}
+#logo{
+  width:10%;
+}
+#test-1 {
+  font-size: 5em;
+  position: absolute;
+  top: 40%;
+  left: 73px;
+  opacity: 0;
+  z-index: 2;
+}
+#test-2 {
+  font-size: 5em;
+  position: absolute;
+  top: 40%;
+  left: 117px;
+  opacity: 0;
+  z-index: 2;
+}
+#test-3 {
+  font-size: 5em;
+  position: absolute;
+  top: 40%;
+  left: 130px;
+  opacity: 0;
+  z-index: 2;
+}
+#test-4 {
+  font-size: 5em;
+  position: absolute;
+  top: 40%;
+  left: 166px;
+  opacity: 0;
+  z-index: 2;
+}
+#test-5 {
+  font-size: 5em;
+  position: absolute;
+  top: 40%;
+  left: 222px;
+  opacity: 0;
+  z-index: 2;
+}
+
+/* #playlist {
+  display: inline-block
+} */
