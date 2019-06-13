@@ -98,6 +98,7 @@ body {
 #map {
   height: 500px;
   width: 800px;
+  margin: auto;
 }
 
 #mainbody {
@@ -171,3 +172,7 @@ body {
   opacity: 0;
   z-index: 2;
 }
+
+/* #playlist {
+  display: inline-block
+} */
