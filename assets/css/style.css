@@ -36,7 +36,7 @@ form h3 {
   flex: 1;
 }
 body {
-  background: url(kuva4_nettiin.jpg) center;
+  background: url(../images/kuva4_nettiin.jpg) center;
 }
 
 #event-genre {
@@ -47,6 +47,7 @@ body {
 }
 .main-carousel {
   padding: 10px;
+  margin-bottom: 50px;
 }
 .carousel-cell {
   width: 220px;
@@ -92,4 +93,9 @@ body {
   .col {
     width: 100%;
   }
+}
+
+#map {
+  height: 500px;
+  width: 800px;
 }

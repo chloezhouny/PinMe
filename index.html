@@ -9,6 +9,9 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUhoVJmCEDevCj8e82oFi0Vn8UB4uqFvg&callback=initMap"
+    async defer></script>
     <!-- Bootstrap -->
     <link
       rel="stylesheet"
@@ -31,10 +34,10 @@
     />
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <!-- mprogress -->
-    <link rel="stylesheet" href="mprogress.min.css" />
-    <script src="mprogress.min.js"></script>
+    <link rel="stylesheet" href="assets/css/mprogress.min.css" />
+    <script src="assets/javascript/mprogress.min.js"></script>
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Audiowide&display=swap"
       rel="stylesheet"
@@ -45,7 +48,7 @@
   <body>
     <div class="container">
       <div class="jumbotron">
-        <img src="image.png" width="80px" />
+        <img src="assets/images/image.png" width="80px" />
         <h1 class="font-weight-bold text-center">pinME</h1>
         <h3 class="text-center">
           <!-- Add a description -->
@@ -103,7 +106,7 @@
         </div>
 
         <!-- Button triggers new movie to be added -->
-        <a href="page2.html" target="_blank">
+        <!-- <a href="page2.html" target="_blank"> -->
           <button
             type="submit"
             class="btn"
@@ -112,7 +115,7 @@
           >
             Search
           </button>
-        </a>
+        <!-- </a> -->
         <a href="page2.html">Test</a>
       </form>
 
@@ -130,15 +133,16 @@
         <div class="carousel-cell" value="11"></div>
       </div>
 
-      <!-- 
+      
       <div class="results">
         <div class="rowResult">
           <div class="col"></div>
           <div class="col"></div>
         </div>
-      </div> -->
-
-      <script src="script.js"></script>
+      </div>
+      
+      <div id="map"></div>
+      <script src="assets/javascript/script.js"></script>
     </div>
     <!-- <footer>xxx</footer> -->
   </body>
