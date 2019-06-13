@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Flickity Stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
+    />
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <!-- mprogress -->
+    <link rel="stylesheet" href="mprogress.min.css" />
+    <script src="mprogress.min.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <img src="image.png" width="80px" />
+        <h1 class="font-weight-bold text-center">PINME</h1>
+        <h3 class="text-center">
+          <!-- Add a description -->
+        </h3>
+      </div>
+      <!-- results testing -->
+      <div class="results">
+        <div class="rowResult">
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+      </div>
+      <div class="main-carousel">
+        <div class="carousel-cell" value="1"></div>
+        <div class="carousel-cell" value="2"></div>
+        <div class="carousel-cell" value="3"></div>
+        <div class="carousel-cell" value="4"></div>
+        <div class="carousel-cell" value="5"></div>
+        <div class="carousel-cell" value="6"></div>
+        <div class="carousel-cell" value="7"></div>
+        <div class="carousel-cell" value="8"></div>
+        <div class="carousel-cell" value="9"></div>
+        <div class="carousel-cell" value="10"></div>
+        <div class="carousel-cell" value="11"></div>
+      </div>
+      <script src="script.js">
+
+        function load()
+        {
+            console.log("Hi");
+        }
+        window.onload = load;
+      </script>
+
+      <a href="index.html">
+        <button type="submit" class="btn">
+          Back
+        </button>
+      </a>
+    </div>
+  </body>
+</html>
