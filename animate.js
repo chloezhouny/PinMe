@@ -8,6 +8,17 @@
       }
       gradientChange();
 
+    //   Change Color to create a gradient wave flow of colors
+      function dynoColor(){
+        for(i=0; i<10; i++){
+          var red = Math.floor(Math.random()*10)+25*i;
+          var green = Math.floor(Math.random()*10)+25*i;
+          var blue = Math.floor(Math.random()*10)+25*i;
+          $(".c"+i).css("backgroundColor", "rgb(" + red + "," + green + "," + blue + ")");
+        }
+      }
+      setInterval(dynoColor,250);
+
 
 // Anime.js Animations
 var tl = anime.timeline({
