@@ -93,6 +93,9 @@ body {
   .col {
     width: 100%;
   }
+  #mainpglogo {
+    display: none;
+  }
 }
 
 #map {
