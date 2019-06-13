@@ -440,7 +440,7 @@ getSpotifyToken();
       url: playlistURL,
       method: "GET",
       Accept: "application/json",
-      ContentType: "application/json",
+      ContentType: "application/json", ``````````````````````````````````````````````````````````````
       headers: {
       "Authorization": "Bearer "+ token1}
 
