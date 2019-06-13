@@ -179,3 +179,29 @@ body {
 /* #playlist {
   display: inline-block
 } */
+
+#playlistDiv
+{
+ width: 100%;
+ display: flex;
+ justify-content: space-around;
+ margin-top: 2%;
+
+}
+
+#playlist
+{
+ width: 25%;
+ position: relative;
+
+}
+
+#playlist img
+{
+
+   max-width: 277.5px;
+   max-height: 277.5px;
+   height: auto;
+   width: auto;
+
+}

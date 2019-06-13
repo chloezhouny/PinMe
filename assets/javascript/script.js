@@ -1,3 +1,19 @@
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCZk9PYW4NDZTAyx1a4a20xyJIryTHwFy4",
+    authDomain: "first-group-project-243018.firebaseapp.com",
+    databaseURL: "https://first-group-project-243018.firebaseio.com",
+    projectId: "first-group-project-243018",
+    storageBucket: "first-group-project-243018.appspot.com",
+    messagingSenderId: "227952669943",
+    appId: "1:227952669943:web:845507b14772ff8e"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  var database = firebase.database();
+
+
 var locations = [];
 
 var labels = [];
@@ -460,7 +476,7 @@ getSpotifyToken();
     })
     .then(function(response){
       console.log(response);
-      for(var i = 0; i<3; i++)
+      for(var i = 0; i<4; i++)
     {
 
       var result = response.playlists;
