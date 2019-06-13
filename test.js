@@ -82,49 +82,94 @@ function getSpotifyToken()
 }
 
 
-console.log("Hi");
-getButton();
-console.log("Hi");
-getSpotifyToken();
-console.log("Hi");
 
-/*
 
-window.onSpotifyWebPlaybackSDKReady = () => {
-  // You can now initialize Spotify.Player and use the SDK
-  	const token = "BQDmhnNczRmQCgZw0_kyvdWS7j4PSx2Z3TB9jMfK3p0e1S3BGHIAEiuWTnO-LRLDWsmEcAr1f07jK9M9_6az5JAgfmm5FpttxZL1HRW11uPjfYzomb_VGOT344v4vW4D80R23-Vgxbg9ZAaf12QXKaQ2mDlq6FVLV2ZJITdV";
-   const player = new Spotify.Player({
 
-        name: 'Web Playback SDK Quick Start Player',
-        getOAuthToken: cb => { cb(token); }
- 
+// Get the hash of the url
+const hash = window.location.hash
+.substring(1)
+.split('&')
+.reduce(function (initial, item) {
+  if (item) {
+    var parts = item.split('=');
+    initial[parts[0]] = decodeURIComponent(parts[1]);
+  }
+  return initial;
+}, {});
+window.location.hash = '';
+
+// Set token
+let _token = hash.access_token;
+
+const authEndpoint = 'https://accounts.spotify.com/authorize';
+
+// Replace with your app's client ID, redirect URI and desired scopes
+const clientId = '5e15085d2b924d049ae29907ee452bbf';
+const redirectUri = 'file:///Users/chloe/Desktop/the-first-big-project/test.html';
+const scopes = [
+  'streaming',
+  'user-read-birthdate',
+  'user-read-private',
+  'user-modify-playback-state'
+];
+
+// If there is no token, redirect to Spotify authorization
+if (!_token) {
+  window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
+}
+
+
+
+
+// Set up the Web Playback SDK
+
+window.onSpotifyPlayerAPIReady = () => {
+  const player = new Spotify.Player({
+    name: 'Web Playback SDK Template',
+    getOAuthToken: cb => { cb(_token); }
   });
-// Error handling
-      player.addListener('initialization_error', ({ message }) => { console.error(message); });
-      player.addListener('authentication_error', ({ message }) => { console.error(message); });
-      player.addListener('account_error', ({ message }) => { console.error(message); });
-      player.addListener('playback_error', ({ message }) => { console.error(message); });
 
-      // Playback status updates
-      player.addListener('player_state_changed', state => { console.log(state); });
+  // Error handling
+  player.on('initialization_error', e => console.error(e));
+  player.on('authentication_error', e => console.error(e));
+  player.on('account_error', e => console.error(e));
+  player.on('playback_error', e => console.error(e));
 
-      // Ready
-      player.addListener('ready', ({ device_id }) => {
-        console.log('Ready with Device ID', device_id);
-      });
+  // Playback status updates
+  player.on('player_state_changed', state => {
+    console.log(state)
+    $('#current-track').attr('src', state.track_window.current_track.album.images[0].url);
+    $('#current-track-name').text(state.track_window.current_track.name);
+  });
 
-      // Not Ready
-      player.addListener('not_ready', ({ device_id }) => {
-        console.log('Device ID has gone offline', device_id);
-      });
+  // Ready
+  player.on('ready', data => {
+    console.log('Ready with Device ID', data.device_id);
+    
+    // Play a track using our new device ID
+    play(data.device_id);
+  });
 
-      // Connect to the player!
-      player.connect();
-    };
+  // Connect to the player!
+  player.connect();
+}
+
+
+// Play a specified track on the Web Playback SDK's device ID
+function play(device_id) {
+  $.ajax({
+   url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
+   type: "PUT",
+   data: '{"uris": ["spotify:track:5ya2gsaIhTkAuWYEMB0nw5"]}',
+   beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
+   success: function(data) { 
+     console.log(data)
+   }
+  });
+}
 
 
 
-*/
 
 
 
@@ -185,7 +230,8 @@ $(document).on("click", ".options", function()
 			var playlists = $("<div id = 'playlist'>");
 			var playlist = $("<a href='" + playlistURL + "' target = 'blank'>");
 			var img = $("<img>");
-			img.attr("src", imgURL);
+			img.attr("src"
+				, imgURL);
 			img.addClass("uk-animation-scale-up uk-transform-origin-top-left uk-transition-fade");
 			img.attr("background-color", "black")
 
