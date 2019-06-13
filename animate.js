@@ -52,3 +52,10 @@ var tl = anime.timeline({
           delay:anime.stagger(500)
         })
       }
+
+      function loadMain(){
+ $(".container").addClass('animated lightSpeedOut delay-1s');
+}
+$(document).ready(function(){
+setTimeout(loadMain,10000);
+});
