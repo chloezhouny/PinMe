@@ -112,6 +112,7 @@ function displayEvent() {
 
 $("#event-genre").on("click", function(event) {
   event.preventDefault();
+  $(".col").empty();
   displayEvent();
 });
 $(".main-carousel").flickity({
