@@ -1,19 +1,3 @@
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCZk9PYW4NDZTAyx1a4a20xyJIryTHwFy4",
-    authDomain: "first-group-project-243018.firebaseapp.com",
-    databaseURL: "https://first-group-project-243018.firebaseio.com",
-    projectId: "first-group-project-243018",
-    storageBucket: "first-group-project-243018.appspot.com",
-    messagingSenderId: "227952669943",
-    appId: "1:227952669943:web:845507b14772ff8e"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  var database = firebase.database();
-
-
 var locations = [];
 
 var labels = [];
@@ -25,13 +9,23 @@ var genreText;
 window.onload = function() {
   displayEvent;
 };
-// function getLocation() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//   } else {
-//     console.log("Geolocation is not supported by this browser.");
-//   }
-// }
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, error);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+}
+
+var geogate = true;
+function error(err) {
+console.log(err.code)
+if (err.code === 1) {
+  geogate = false;
+}
+}
+
 
 function showPosition(position) {
   console.log(
@@ -53,18 +47,18 @@ function getURL() {
 
   var date = $("#date").val();
   var queryURL;
-  var basicURL =
-    "https://www.eventbriteapi.com/v3/events/search/?sort_by=date&categories=103&token=HCI6R2VNZXBSOAT5UBT2&expand=venue&location.latitude=" +
+  var basicURL;
+  
+  if (geogate) {
+    basicURL = "https://www.eventbriteapi.com/v3/events/search/?sort_by=date&categories=103&token=HCI6R2VNZXBSOAT5UBT2&expand=venue&location.latitude=" +
     userlat +
     "&location.longitude=" +
     userlong +
-    "&location.within=100mi";
-
-  // if (
-  //   eventGenre == "Any genre" &&
-  //   price == "Any price" &&
-  //   date == "Any date"
-  // ) {
+    "&location.within=100mi";}
+  else if (!geogate) {
+    basicURL = "https://www.eventbriteapi.com/v3/events/search/?sort_by=date&categories=103&token=HCI6R2VNZXBSOAT5UBT2&expand=venue"
+  }
+ 
   queryURL = basicURL;
 
   if (price !== "Any price") {
@@ -157,31 +151,7 @@ $(".main-carousel").flickity({
   groupCells: true
 });
 
-//get covers from sotify
-// $.ajax({
-//     url: playlistURL,
-//     method: "GET",
-//     Accept: "application/json",
-//     ContentType: "application/json",
-//     headers: {
-//     "Authorization": "Bearer "+ token1}
-//
-// })
-// .then(function(response){
-//     console.log(response);
-//     for(var i = 0; i<4; i++)
-// {
-//
-//     var result = response.playlists;
-//     var playlistURL = result.items[i].external_urls.spotify;
-//
-//     var imgURL = result.items[i].images[0].url;
-// }
-//
-
 getLocation();
-
-
 
 //Google Maps script
 
@@ -190,8 +160,9 @@ var markers = [];
 setTimeout(initMap(),1000);
 function initMap() {
 
-  var myLatlng = new google.maps.LatLng(userlat, userlong)
+  var myLatlng = new google.maps.LatLng(67.880605, 12.982618)
 
+  
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 8,
     center: myLatlng
@@ -274,9 +245,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 }
 
-
-
-
    // Sets the map on all markers in the array.
    function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
@@ -290,11 +258,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     locations = [];
     labels = [];
   }
-
-
-
-
-
 
 
 function getSpotifyToken()
@@ -335,124 +298,6 @@ function getSpotifyToken()
 
 getSpotifyToken();
 
-
-
-
-// var deviceId; 
-
-
-
-//   console.log(window.location.hash);
-//   // Get the hash of the url
-//   const hash = window.location.hash
-//   .substring(1)
-//   .split('&')
-//   .reduce(function (initial, item) {
-//     if (item) {
-//       var parts = item.split('=');
-//       initial[parts[0]] = decodeURIComponent(parts[1]);
-//     }
-//     return initial;
-//   }, {});
-//   window.location.hash = '';
-
-//   // Set token
-//   let _token = hash.access_token;
-
-//   const authEndpoint = 'https://accounts.spotify.com/authorize';
-
-//   // Replace with your app's client ID, redirect URI and desired scopes
-//   const clientId = '5e15085d2b924d049ae29907ee452bbf';
-//   const redirectUri = 'http://localhost:8000/Desktop/testSpotify/';
-//   const scopes = [
-//     'streaming',
-//     'user-read-birthdate',
-//     'user-read-private',
-//     'user-modify-playback-state'
-//   ];
-
-//   // If there is no token, redirect to Spotify authorization
-  
-
-
-
-
-//   // Set up the Web Playback SDK
-
-//   window.onSpotifyPlayerAPIReady = () => {
-//     const player = new Spotify.Player({
-//       name: 'Web Playback SDK Template',
-//       getOAuthToken: cb => { cb(_token); }
-//     });
-
-//     // Error handling
-//     player.on('initialization_error', e => console.error(e));
-//     player.on('authentication_error', e => console.error(e));
-//     player.on('account_error', e => console.error(e));
-//     player.on('playback_error', e => console.error(e));
-
-//     // Playback status updates
-//     player.on('player_state_changed', state => {
-//       console.log(state)
-//       $('#current-track').attr('src', state.track_window.current_track.album.images[0].url);
-//       $('#current-track-name').text(state.track_window.current_track.name);
-//     });
-
-//     // Ready
-//     player.on('ready', data => {
-//       console.log('Ready with Device ID', data.device_id);
-      
-//       // Play a track using our new device ID
-//        deviceId = data.device_id;
-      
-//     });
-
-//     // Connect to the player!
-//     player.connect();
-//   }
-
-
-
-// // Play a specified track on the Web Playback SDK's device ID
-// function play(device_id) {
-//   $.ajax({
-//    url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
-//    type: "PUT",
-//    data: '{"uris": ["'+trackURI+'"]}',
-//    beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
-//    success: function(data) { 
-//      console.log(data)
-//    }
-//   });
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var tracksAPIs = [];
-// var trackURI;
-
-
-// $(document).on("click", "#event-genre", function()
-// {
  function playList()
  {
   $("#playlistDiv").text("");
@@ -482,10 +327,7 @@ getSpotifyToken();
       var result = response.playlists;
       var playlistURL = result.items[i].external_urls.spotify;
 
-      var imgURL = result.items[i].images[0].url;
-      // var tracksAPI = result.items[i].tracks.href;
-      // tracksAPIs.push(tracksAPI);
-      
+      var imgURL = result.items[i].images[0].url;      
 
       var playlists = $("<div id = 'playlist'>");
       var playlist = $("<a href='" + playlistURL + "' target = 'blank'>");
@@ -509,37 +351,6 @@ getSpotifyToken();
       
       $("#playlistDiv").append(playlists);
     }
-
-  //   getTrackURI();
-  //   if (!_token) {
-  //   // window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
-  //   window.open(`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`, "_blank");
-  // }
   })
 }
-
-
-
-// function getTrackURI()
-// {
-//   var tracksURL = tracksAPIs[0];
-//   $.ajax({
-//       url: tracksURL,
-//       method: "GET",
-//       Accept: "application/json",
-//       ContentType: "application/json",
-//       headers: {
-//       "Authorization": "Bearer "+ token1}
-
-//     })
-//     .then(function(response){
-//       console.log(response);
-
-//       console.log(response.items[0].track.uri);
-//       trackURI = response.items[0].track.uri;
-//       play(deviceId);
-//       tracksAPIs = [];
-//     })
-
-// }
 
