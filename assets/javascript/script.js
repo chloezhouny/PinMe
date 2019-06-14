@@ -117,7 +117,7 @@ function displayEvent() {
 
       var fav = $("<button>")
         .addClass("fav")
-
+        .attr("data-id", events[i].id)
         .attr("data-nameFav", events[i].name.text)
         .attr("data-sumFav", events[i].summary)
         .attr("data-venueFav", events[i].venue.name)
@@ -387,6 +387,7 @@ var config = {
 };
 // Initialize Firebase
 firebase.initializeApp(config);
+var database = firebase.database();
 
 googleSignIn = () => {
   var provider = new firebase.auth.GoogleAuthProvider();
@@ -432,19 +433,20 @@ function addFavorite(button, nameFav, sumFav, venueFav, urlFav) {
   $(button)
     .text("♡")
     .css("color", "red");
-  favorites.push([nameFav, sumFav, venueFav, urlFav]);
+  favorites.push([button, nameFav, sumFav, venueFav, urlFav]);
   firebase
     .database()
     .ref("users/" + signedInUser.uid + "/favorites")
     .set(favorites);
 }
 
-database.ref().on(
+database.ref("users/" + signedInUser.uid + "/favorites").on(
   "child_added",
   function(childSnapshot) {
     console.log(childSnapshot.val());
 
     events.push([
+      childSnapshot.val().button,
       childSnapshot.val().nameFav,
       childSnapshot.val().sumFav,
       childSnapshot.val().venueFav,
@@ -460,20 +462,30 @@ database.ref().on(
 
 function renderEvent() {
   for (var i = 0; i < events.length; i++) {
-    renderTrain(event[i]);
+    renderEvent(event[i]);
   }
 }
+
 function renderEvent(event) {
   var savedName = event.nameFav;
   var savedSum = event.sumFav;
   var savedVenue = event.venueFav;
   var savedUrl = event.url;
+
+  var savedEvent = $("<div>");
+  var savedEventName = $("<h3>").text(savedName);
+  var savedEventSum = $("<h3>").text(savedSum);
+  var savedEventVenue = $("<h3>").text(savedVenue);
+  var savedEventUrl = $("<h3>").text(savedUrl);
+  savedEvent.append(
+    savedEventName,
+    savedEventSum,
+    savedEventVenue,
+    savedEventUrl
+  );
 }
 function showFavorites() {
-  fo;
-  var savedEvent = $("<div>");
-
-  "#savedEvents".css("display", "block");
+  $("#savedEvents").css("display", "block");
 }
 
 function logOut() {
