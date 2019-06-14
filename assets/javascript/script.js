@@ -115,6 +115,10 @@ function displayEvent() {
         text: "read more"
       });
 
+      var fav = $("<button>")
+        .addClass("fav")
+        .text("♡ add to favorites");
+
       var eventFree;
       if (events[i].is_free) {
         eventFree = $("<p>").html("<b>Pricing:</b> Free");
@@ -132,6 +136,8 @@ function displayEvent() {
       newEvent.append(eventPlace);
 
       newEvent.append(eventURL);
+      newEvent.append(fav);
+
       $($(".col")[i % 2]).append(newEvent);
 
       var eventloc = [];
@@ -381,3 +387,6 @@ googleSignIn = () => {
       console.log(err);
     });
 };
+
+$("#signIn").css("display", "none");
+$("#favorites").css("display", "block");
