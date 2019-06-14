@@ -35,9 +35,6 @@ form h3 {
   margin-right: 15px;
   flex: 1;
 }
-/* body {
-  /* background: url(../images/kuva4_nettiin.jpg) center; */
-/* } */
 
 #event-genre {
   height: 38px;
@@ -76,16 +73,7 @@ form h3 {
 .image {
   width: 100%;
 }
-/* @media only screen and (min-width: 990px) {
-  body {
-    padding: 0 100px;
-  }
-} */
-/* @media only screen and (min-width: 1100px) {
-  body {
-    padding: 0 150px;
-  }
-} */
+
 @media only screen and (max-width: 768px) {
   .rowResult {
     flex-direction: column;
@@ -96,12 +84,17 @@ form h3 {
   #mainpglogo {
     display: none;
   }
+  #map {
+    width: 85vw !important;
+  }
 }
 
 #map {
   height: 500px;
   width: 70vw;
   margin: auto;
+  max-width: 1110px;
+  margin-bottom: 10px;
 }
 
 #mainbody {
@@ -171,14 +164,10 @@ form h3 {
   font-size: 5em;
   position: absolute;
   top: 40%;
-  left: 340px;
+  left: 345px;
   opacity: 0;
   z-index: 2;
 }
-
-/* #playlist {
-  display: inline-block
-} */
 
 #playlistDiv
 {
