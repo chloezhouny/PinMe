@@ -117,7 +117,21 @@ function displayEvent() {
 
       var fav = $("<button>")
         .addClass("fav")
-        .text("♡ add to favorites");
+
+        .attr("data-nameFav", events[i].name.text)
+        .attr("data-sumFav", events[i].summary)
+        .attr("data-venueFav", events[i].venue.name)
+        .attr("data-urlFav", events[i].url)
+        .text("♡ add to favorites")
+        .on("click", function() {
+          addFavorite(
+            this,
+            $(this).attr("data-nameFav"),
+            $(this).attr("data-sumFav"),
+            $(this).attr("data-venueFav"),
+            $(this).attr("data-urlFav")
+          );
+        });
 
       var eventFree;
       if (events[i].is_free) {
@@ -175,7 +189,6 @@ getLocation();
 
 var markers = [];
 
-setTimeout(initMap(), 1000);
 function initMap() {
   var myLatlng = new google.maps.LatLng(67.880605, 12.982618);
 
@@ -388,5 +401,81 @@ googleSignIn = () => {
     });
 };
 
-$("#signIn").css("display", "none");
-$("#favorites").css("display", "block");
+var signedInUser;
+function authStateObserver(user) {
+  signedInUser = user;
+
+  if (user) {
+    $("#signIn").css("display", "none");
+    $("#favorites").css("display", "block");
+    $("#out").css("display", "block");
+    $(".greet").css("display", "block");
+    $(".greet").text("Hi, " + user.displayName + "!"); //firebase api
+
+    console.log(user.displayName);
+
+    console.log("got user");
+    console.log(user);
+  } else {
+    $("#signIn").css("display", "block");
+    $("#out").css("display", "none");
+    $(".greet").css("display", "none");
+    $("#favorites").css("display", "none");
+  }
+}
+
+firebase.auth().onAuthStateChanged(authStateObserver);
+
+var favorites = [];
+
+function addFavorite(button, nameFav, sumFav, venueFav, urlFav) {
+  $(button)
+    .text("♡")
+    .css("color", "red");
+  favorites.push([nameFav, sumFav, venueFav, urlFav]);
+  firebase
+    .database()
+    .ref("users/" + signedInUser.uid + "/favorites")
+    .set(favorites);
+}
+
+database.ref().on(
+  "child_added",
+  function(childSnapshot) {
+    console.log(childSnapshot.val());
+
+    events.push([
+      childSnapshot.val().nameFav,
+      childSnapshot.val().sumFav,
+      childSnapshot.val().venueFav,
+      childSnapshot.val().url
+    ]);
+
+    renderEvents();
+  },
+  function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  }
+);
+
+function renderEvent() {
+  for (var i = 0; i < events.length; i++) {
+    renderTrain(event[i]);
+  }
+}
+function renderEvent(event) {
+  var savedName = event.nameFav;
+  var savedSum = event.sumFav;
+  var savedVenue = event.venueFav;
+  var savedUrl = event.url;
+}
+function showFavorites() {
+  fo;
+  var savedEvent = $("<div>");
+
+  "#savedEvents".css("display", "block");
+}
+
+function logOut() {
+  firebase.auth().signOut();
+}

@@ -10,12 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Google Maps -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUhoVJmCEDevCj8e82oFi0Vn8UB4uqFvg&callback=initMap"
-      async
-      defer
-    ></script>
+
     <!-- Google API -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- Bootstrap -->
@@ -57,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container col-md-12" id="intro">
+    <!-- <div class="container col-md-12" id="intro">
       <h1 id="test-0">
         <img src="assets/images/image.png" id="logo" alt="logo" />
       </h1>
@@ -66,11 +61,17 @@
       <h1 id="test-3">n</h1>
       <h1 id="test-4">M</h1>
       <h1 id="test-5">E</h1>
-      <section class="color"></section>
-    </div>
+      <section class="color"></section> -->
+    <!-- </div> -->
     <div class="container" id="mainbody">
-      <button onclick="googleSignIn()" id="signIn">Google SignIn</button>
-      <button id="favorites">♡ favorites</button>
+      <div class="signDiv">
+        <button id="favorites" onclick="showFavorites()">♡ favorites</button>
+        <p class="greet"></p>
+        <button onclick="googleSignIn()" id="signIn">Google SignIn</button>
+        <div class="out">
+          <button id="out" onclick="logOut()">Log out</button>
+        </div>
+      </div>
 
       <div class="jumbotron">
         <img
@@ -141,7 +142,7 @@
           Search
         </button>
       </form>
-
+      <div id="savedEvents"></div>
       <!-- <div class="main-carousel">
         <div class="carousel-cell" value="1"></div>
         <div class="carousel-cell" value="2"></div>
@@ -169,6 +170,12 @@
       <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
       <script src="assets/javascript/animate.js"></script>
       <script src="assets/javascript/script.js"></script>
+      <!-- Google Maps -->
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUhoVJmCEDevCj8e82oFi0Vn8UB4uqFvg&callback=initMap"
+        async
+        defer
+      ></script>
       <!-- Uikit & Spotify SDK References -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>

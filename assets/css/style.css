@@ -41,19 +41,32 @@ body {
 #favorites {
   display: none;
 }
+.signDiv {
+  display: flex;
+  justify-content: space-between;
+}
 #signIn,
-#favorites {
+#favorites,
+#out {
   margin: 10px 0;
+}
+#out {
+  display: none;
 }
 #event-genre,
 #signIn,
 #favorites,
-.fav {
+.fav,
+#out {
   height: 38px;
   width: 150px;
   background-color: black;
   border-radius: 5px;
   color: white;
+}
+.greet {
+  font-size: 18pt;
+  color: whitesmoke;
 }
 a {
   color: indigo;
@@ -128,7 +141,7 @@ a {
 }
 
 #mainbody {
-  display: none;
+  /*  display: none; */
 }
 
 #intro {
