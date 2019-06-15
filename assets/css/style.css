@@ -95,20 +95,53 @@ a {
   width: 50%;
   padding: 0 !important;
 }
-.eventDiv {
+.h {
+  margin-bottom: 10px;
+  padding-top: 5px;
+}
+button {
+  cursor: pointer;
+}
+#close,
+.h {
+  text-align: center;
+}
+.favList,
+#close {
+  background-color: black;
+  border-radius: 5px;
+  color: red;
+}
+.favList {
+  padding: 5px 15px;
+}
+#close {
+  padding: 0 10px;
+}
+.eventDiv,
+#savedEvents {
   background-color: rgba(250, 219, 200, 0.8);
   padding: 15px;
   margin: 10px;
   display: flex;
   flex-direction: column;
 }
-/* .fav {
+#savedEvents {
+  display: none;
+  border-radius: 5px;
+  flex-direction: column;
+}
+.rowEvents {
+  display: flex;
+  justify-content: space-between;
+}
+.fav {
   border: 0;
   background: red;
   color: black;
   text-align: left;
   display: none;
-} */
+}
 .image {
   width: 100%;
 }

@@ -115,20 +115,25 @@ function displayEvent() {
         text: "read more"
       });
 
+      debugger;
       var fav = $("<button>")
         .addClass("fav")
         .attr("data-id", events[i].id)
+        .attr("data-imgFav", events[i].logo.url)
         .attr("data-nameFav", events[i].name.text)
         .attr("data-sumFav", events[i].summary)
         .attr("data-venueFav", events[i].venue.name)
+        .attr("data-isFree", events[i].is_free)
         .attr("data-urlFav", events[i].url)
         .text("♡ add to favorites")
         .on("click", function() {
           addFavorite(
-            this,
+            $(this).attr("data-id"),
+            $(this).attr("data-imgFav"),
             $(this).attr("data-nameFav"),
             $(this).attr("data-sumFav"),
             $(this).attr("data-venueFav"),
+            $(this).attr("data-isFree"),
             $(this).attr("data-urlFav")
           );
         });
@@ -367,7 +372,6 @@ function playList() {
       playlist.addClass("uk-overflow-hidden");
       playlist.append(img);
       playlist.append(playDiv);
-
       playlists.append(playlist);
 
       $("#playlistDiv").append(playlists);
@@ -417,6 +421,7 @@ function authStateObserver(user) {
 
     console.log("got user");
     console.log(user);
+    listenToDb();
   } else {
     $("#signIn").css("display", "block");
     $("#out").css("display", "none");
@@ -429,63 +434,104 @@ firebase.auth().onAuthStateChanged(authStateObserver);
 
 var favorites = [];
 
-function addFavorite(button, nameFav, sumFav, venueFav, urlFav) {
-  $(button)
-    .text("♡")
-    .css("color", "red");
-  favorites.push([button, nameFav, sumFav, venueFav, urlFav]);
+function addFavorite(
+  id,
+  imgFav,
+  nameFav,
+  sumFav,
+  venueFav,
+  timeFav,
+  addressFav,
+  isFree,
+  urlFav
+) {
+  var newFavorite = [
+    id,
+    imgFav,
+    nameFav,
+    sumFav,
+    venueFav,
+    timeFav,
+    addressFav,
+    isFree,
+    urlFav
+  ];
+
   firebase
     .database()
     .ref("users/" + signedInUser.uid + "/favorites")
-    .set(favorites);
+    .push(newFavorite);
 }
 
-database.ref("users/" + signedInUser.uid + "/favorites").on(
-  "child_added",
-  function(childSnapshot) {
-    console.log(childSnapshot.val());
+function listenToDb() {
+  database.ref("users/" + signedInUser.uid + "/favorites").on(
+    "child_added",
+    function(childSnapshot) {
+      var newFavorite = childSnapshot.val();
 
-    events.push([
-      childSnapshot.val().button,
-      childSnapshot.val().nameFav,
-      childSnapshot.val().sumFav,
-      childSnapshot.val().venueFav,
-      childSnapshot.val().url
-    ]);
+      var id = newFavorite[0];
+      var cssSelector = $("button[data-id='" + id + "']");
+      $(cssSelector)
+        .text("♡")
+        .css("color", "red");
 
-    renderEvents();
-  },
-  function(errorObject) {
-    console.log("Errors handled: " + errorObject.code);
-  }
-);
+      favorites.push(newFavorite);
 
-function renderEvent() {
-  for (var i = 0; i < events.length; i++) {
-    renderEvent(event[i]);
+      // renderfavorites();
+    },
+    function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    }
+  );
+}
+
+function renderFavorites() {
+  for (var i = 0; i < favorites.length; i++) {
+    renderEvent(i, favorites[i]);
   }
 }
 
-function renderEvent(event) {
-  var savedName = event.nameFav;
-  var savedSum = event.sumFav;
-  var savedVenue = event.venueFav;
-  var savedUrl = event.url;
+function renderEvent(index, event) {
+  var savedPic = event[1];
+  var savedName = event[2];
+  var savedSum = event[3];
+  var savedVenue = event[4];
+  var savedPrice = event[5];
+  var savedUrl = event[6];
 
-  var savedEvent = $("<div>");
-  var savedEventName = $("<h3>").text(savedName);
-  var savedEventSum = $("<h3>").text(savedSum);
-  var savedEventVenue = $("<h3>").text(savedVenue);
-  var savedEventUrl = $("<h3>").text(savedUrl);
+  var savedEvent = $("<div>").addClass("eventDiv");
+  var savedEventPic = $("<img>").attr("src", savedPic);
+  var savedEventName = $("<h4>").text(savedName);
+  var savedEventSum = $("<p>").text(savedSum);
+  var savedEventVenue = $("<p>").html("<b>AVenue:</b> " + savedVenue);
+  var savedEventPrice;
+  if (savedPrice) {
+    savedEventPrice = $("<p>").html("<b>Pricing:</b> Free");
+  } else if (!savedPrice) {
+    savedEventPrice = $("<p>").html("<b>Pricing:</b> Paid");
+  }
+  var savedEventUrl = $("<p>").html(
+    "<a href ='" + savedUrl + "'>read more</a>"
+  );
+
   savedEvent.append(
+    savedEventPic,
     savedEventName,
     savedEventSum,
     savedEventVenue,
+    savedEventPrice,
     savedEventUrl
   );
+
+  $($(".column")[index % 2]).append(savedEvent);
 }
 function showFavorites() {
-  $("#savedEvents").css("display", "block");
+  $("#savedEvents").css("display", "flex");
+  //
+  renderFavorites();
+}
+function hide() {
+  $("#savedEvents").css("display", "none");
 }
 
 function logOut() {
