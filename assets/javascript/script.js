@@ -9,6 +9,7 @@ var genreText;
 window.onload = function() {
   displayEvent;
 };
+
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, error);

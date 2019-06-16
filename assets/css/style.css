@@ -139,16 +139,7 @@ button {
 .image {
   width: 100%;
 }
-@media only screen and (min-width: 990px) {
-  body {
-    padding: 0 100px;
-  }
-}
-@media only screen and (min-width: 1100px) {
-  body {
-    padding: 0 150px;
-  }
-}
+
 @media only screen and (max-width: 768px) {
   .rowResult {
     flex-direction: column;
@@ -159,12 +150,17 @@ button {
   #mainpglogo {
     display: none;
   }
+  #map {
+    width: 85vw !important;
+  }
 }
 
 #map {
   height: 500px;
   width: 70vw;
   margin: auto;
+  max-width: 1110px;
+  margin-bottom: 10px;
 }
 
 #mainbody {
@@ -172,7 +168,7 @@ button {
 }
 
 #intro {
-  margin: 0;
+  margin-left: 0;
   height: 100vh;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   overflow: hidden;
@@ -190,7 +186,7 @@ button {
   font-size: 5em;
   position: absolute;
   top: 18%;
-  left: 0;
+  left: 112px;
   opacity: 0;
   z-index: 2;
 }
@@ -201,7 +197,7 @@ button {
   font-size: 5em;
   position: absolute;
   top: 40%;
-  left: 73px;
+  left: 190px;
   opacity: 0;
   z-index: 2;
 }
@@ -209,7 +205,7 @@ button {
   font-size: 5em;
   position: absolute;
   top: 40%;
-  left: 117px;
+  left: 235px;
   opacity: 0;
   z-index: 2;
 }
@@ -217,7 +213,7 @@ button {
   font-size: 5em;
   position: absolute;
   top: 40%;
-  left: 130px;
+  left: 250px;
   opacity: 0;
   z-index: 2;
 }
@@ -225,7 +221,7 @@ button {
   font-size: 5em;
   position: absolute;
   top: 40%;
-  left: 166px;
+  left: 285px;
   opacity: 0;
   z-index: 2;
 }
@@ -233,14 +229,10 @@ button {
   font-size: 5em;
   position: absolute;
   top: 40%;
-  left: 222px;
+  left: 345px;
   opacity: 0;
   z-index: 2;
 }
-
-/* #playlist {
-  display: inline-block
-} */
 
 #playlistDiv {
   width: 100%;
@@ -255,8 +247,8 @@ button {
 }
 
 #playlist img {
-  max-width: 277.5px;
-  max-height: 277.5px;
+  max-width: 100%;
+  max-height: 100%;
   height: auto;
   width: auto;
 }
