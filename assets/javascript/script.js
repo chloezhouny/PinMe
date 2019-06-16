@@ -434,28 +434,8 @@ firebase.auth().onAuthStateChanged(authStateObserver);
 
 var favorites = [];
 
-function addFavorite(
-  id,
-  imgFav,
-  nameFav,
-  sumFav,
-  venueFav,
-  timeFav,
-  addressFav,
-  isFree,
-  urlFav
-) {
-  var newFavorite = [
-    id,
-    imgFav,
-    nameFav,
-    sumFav,
-    venueFav,
-    timeFav,
-    addressFav,
-    isFree,
-    urlFav
-  ];
+function addFavorite(id, imgFav, nameFav, sumFav, venueFav, isFree, urlFav) {
+  var newFavorite = [id, imgFav, nameFav, sumFav, venueFav, isFree, urlFav];
 
   firebase
     .database()

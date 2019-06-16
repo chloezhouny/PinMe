@@ -135,13 +135,7 @@ button {
   display: flex;
   justify-content: space-between;
 }
-.fav {
-  border: 0;
-  background: red;
-  color: black;
-  text-align: left;
-  display: none;
-}
+
 .image {
   width: 100%;
 }
