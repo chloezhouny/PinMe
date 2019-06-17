@@ -148,6 +148,8 @@ function displayEvent() {
       newEvent.append(eventPlace);
 
       newEvent.append(eventURL);
+      newEvent.append(fav);
+      
       $($(".col")[i % 2]).append(newEvent);
 
       var eventloc = [];
