@@ -74,7 +74,6 @@ function getURL() {
 }
 
 function displayEvent() {
-  //debugger;
 
   var queryURL = getURL();
 
@@ -106,6 +105,30 @@ function displayEvent() {
         href: events[i].url,
         text: "read more"
       });
+
+      var fav = $("<button>")
+      .addClass("fav")
+      .attr("data-id", events[i].id)
+      .attr("data-imgFav", events[i].logo.url)
+      .attr("data-nameFav", events[i].name.text)
+      .attr("data-sumFav", events[i].summary)
+      .attr("data-venueFav", events[i].venue.name)
+      .attr("data-isFree", events[i].is_free)
+      .attr("data-urlFav", events[i].url)
+      .text("♡ add to favorites")
+      .on("click", function() {
+        addFavorite(
+          $(this).attr("data-id"),
+          $(this).attr("data-imgFav"),
+          $(this).attr("data-nameFav"),
+          $(this).attr("data-sumFav"),
+          $(this).attr("data-venueFav"),
+          $(this).attr("data-isFree"),
+          $(this).attr("data-urlFav")
+        );
+      });
+
+
 
       var eventFree;
       if (events[i].is_free) {
@@ -157,7 +180,6 @@ getLocation();
 
 var markers = [];
 
-setTimeout(initMap(),1000);
 function initMap() {
 
   var myLatlng = new google.maps.LatLng(67.880605, 12.982618)
@@ -354,3 +376,141 @@ getSpotifyToken();
   })
 }
 
+//firebase
+var config = {
+  apiKey: "AIzaSyC4Oa03PsGzQVoElWaQhppeLBDxINlYfYk",
+  authDomain: "pinme-270ea.firebaseapp.com",
+  databaseURL: "https://pinme-270ea.firebaseio.com",
+  projectId: "pinme-270ea",
+  storageBucket: "pinme-270ea.appspot.com",
+  messagingSenderId: "806008211699",
+  appId: "1:806008211699:web:f94ec750052f45f3"
+};
+// Initialize Firebase
+firebase.initializeApp(config);
+var database = firebase.database();
+
+googleSignIn = () => {
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then(function(result) {
+      console.log(result);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+};
+
+var signedInUser;
+function authStateObserver(user) {
+  signedInUser = user;
+
+  if (user) {
+    $("#signIn").css("display", "none");
+    $("#favorites").css("display", "block");
+    $("#out").css("display", "block");
+    $(".greet").css("display", "block");
+    $(".greet").text("Hi, " + user.displayName + "!"); //firebase api
+
+    console.log(user.displayName);
+
+    console.log("got user");
+    console.log(user);
+    listenToDb();
+  } else {
+    $("#signIn").css("display", "block");
+    $("#out").css("display", "none");
+    $(".greet").css("display", "none");
+    $("#favorites").css("display", "none");
+  }
+}
+
+firebase.auth().onAuthStateChanged(authStateObserver);
+
+var favorites = [];
+
+function addFavorite(id, imgFav, nameFav, sumFav, venueFav, isFree, urlFav) {
+  var newFavorite = [id, imgFav, nameFav, sumFav, venueFav, isFree, urlFav];
+
+  firebase
+    .database()
+    .ref("users/" + signedInUser.uid + "/favorites")
+    .push(newFavorite);
+}
+
+function listenToDb() {
+  database.ref("users/" + signedInUser.uid + "/favorites").on(
+    "child_added",
+    function(childSnapshot) {
+      var newFavorite = childSnapshot.val();
+
+      var id = newFavorite[0];
+      var cssSelector = $("button[data-id='" + id + "']");
+      $(cssSelector)
+        .text("♡")
+        .css("color", "red");
+
+      favorites.push(newFavorite);
+
+      // renderfavorites();
+    },
+    function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    }
+  );
+}
+
+function renderFavorites() {
+  for (var i = 0; i < favorites.length; i++) {
+    renderEvent(i, favorites[i]);
+  }
+}
+
+function renderEvent(index, event) {
+  var savedPic = event[1];
+  var savedName = event[2];
+  var savedSum = event[3];
+  var savedVenue = event[4];
+  var savedPrice = event[5];
+  var savedUrl = event[6];
+
+  var savedEvent = $("<div>").addClass("eventDiv");
+  var savedEventPic = $("<img>").attr("src", savedPic);
+  var savedEventName = $("<h4>").text(savedName);
+  var savedEventSum = $("<p>").text(savedSum);
+  var savedEventVenue = $("<p>").html("<b>AVenue:</b> " + savedVenue);
+  var savedEventPrice;
+  if (savedPrice) {
+    savedEventPrice = $("<p>").html("<b>Pricing:</b> Free");
+  } else if (!savedPrice) {
+    savedEventPrice = $("<p>").html("<b>Pricing:</b> Paid");
+  }
+  var savedEventUrl = $("<p>").html(
+    "<a href ='" + savedUrl + "'>read more</a>"
+  );
+
+  savedEvent.append(
+    savedEventPic,
+    savedEventName,
+    savedEventSum,
+    savedEventVenue,
+    savedEventPrice,
+    savedEventUrl
+  );
+
+  $($(".column")[index % 2]).append(savedEvent);
+}
+function showFavorites() {
+  $("#savedEvents").css("display", "flex");
+  //
+  renderFavorites();
+}
+function hide() {
+  $("#savedEvents").css("display", "none");
+}
+
+function logOut() {
+  firebase.auth().signOut();
+}

@@ -6,12 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- Firebase References -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUhoVJmCEDevCj8e82oFi0Vn8UB4uqFvg&callback=initMap"
-    async defer></script>
+
     <!-- Google API -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- Bootstrap -->
@@ -30,7 +29,10 @@
       crossorigin="anonymous"
     ></script>
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
     <!-- Flickity Stylesheet -->
     <link
       rel="stylesheet"
@@ -47,27 +49,45 @@
       rel="stylesheet"
     />
     <!-- UI Kit -->
-    <link rel=“stylesheet” href=“https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css” />
+    <link rel=“stylesheet”
+    href=“https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css”
+    />
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/images/image.png">
+    <link rel="icon" href="assets/images/image.png" />
     <title>PINME</title>
   </head>
 
   <body>
-      <div class="col-md-12 container-fluid mx-0 px-0" id="intro">
-              <h1 id="test-0"><img src="assets/images/image.png" id="logo" alt="logo"></h1>
-              <h1 id="test-1">P</h1>
-              <h1 id="test-2">i</h1>
-              <h1 id="test-3">n</h1>
-              <h1 id="test-4">M</h1>
-              <h1 id="test-5">E</h1>
-              <section class="color">
-              </section>
-            </div>
+    <div class="col-md-12 container-fluid mx-0 px-0" id="intro">
+      <h1 id="test-0">
+        <img src="assets/images/image.png" id="logo" alt="logo" />
+      </h1>
+      <h1 id="test-1">P</h1>
+      <h1 id="test-2">i</h1>
+      <h1 id="test-3">n</h1>
+      <h1 id="test-4">M</h1>
+      <h1 id="test-5">E</h1>
+      <section class="color"></section>
+    </div>
     <div class="container" id="mainbody">
+      <div class="signDiv">
+        <button id="favorites" onclick="showFavorites()">♡ favorites</button>
+        <p class="greet"></p>
+        <button onclick="googleSignIn()" id="signIn">Google SignIn</button>
+        <div class="out">
+          <button id="out" onclick="logOut()">Log out</button>
+        </div>
+      </div>
+
       <div class="jumbotron">
-        <img src="assets/images/image.png" class="animated bounceInDown" width="80px" height="109px" id="mainpglogo"/>
+        <img
+          src="assets/images/image.png"
+          class="animated bounceInDown"
+          width="80px"
+          height="109px"
+          id="mainpglogo"
+        />
         <h1 class="font-weight-bold text-center">pinME</h1>
         <h3 class="text-center">
           <!-- Add a description -->
@@ -125,37 +145,47 @@
         </div>
 
         <!-- Button triggers new movie to be added -->
-          <button
-            type="submit"
-            class="btn"
-            id="event-genre"
-            value="Add a genre"
-          >
-            Search
-          </button>
+        <button type="submit" class="btn" id="event-genre" value="Add a genre">
+          Search
+        </button>
       </form>
+      <div id="savedEvents">
+        <div class="rowEvents h">
+          <div class="favList">♡ favorites</div>
+          <button id="close" onclick="hide()">x</button>
+        </div>
 
-      <div id="playlistDiv" class = "d-flex flex-row"></div>
-      
+        <div class="rowEvents">
+          <div class="column"></div>
+          <div class="column"></div>
+        </div>
+      </div>
+
+      <div id="playlistDiv" class="d-flex flex-row"></div>
+
       <div class="results">
         <div class="rowResult">
           <div class="col"></div>
           <div class="col"></div>
         </div>
       </div>
-      
+
       <div id="map"></div>
-        <!-- Anime JS -->
+      <!-- Anime JS -->
       <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
       <script src="assets/javascript/animate.js"></script>
       <script src="assets/javascript/script.js"></script>
-        <!-- Uikit & Spotify SDK References -->
+      <!-- Google Maps -->
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUhoVJmCEDevCj8e82oFi0Vn8UB4uqFvg&callback=initMap"
+        async
+        defer
+      ></script>
+      <!-- Uikit & Spotify SDK References -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </div>
-    <!-- <footer>xxx</footer> -->
   </body>
 </html>
 
-<!-- onclick="window.location.href='page2.html'" -->

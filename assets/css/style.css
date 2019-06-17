@@ -19,7 +19,7 @@ form h3 {
   display: flex;
   justify-content: center;
   padding: 25px !important;
-  margin: 15px 0;
+  margin-bottom: 15px;
 }
 .jumbotron img {
   margin-right: 40px;
@@ -36,11 +36,39 @@ form h3 {
   flex: 1;
 }
 
-#event-genre {
+#favorites {
+  display: none;
+}
+.signDiv {
+  display: flex;
+  justify-content: space-between;
+}
+#signIn,
+#favorites,
+#out {
+  margin: 10px 0;
+}
+#out {
+  display: none;
+}
+#event-genre,
+#signIn,
+#favorites,
+.fav,
+#out {
   height: 38px;
   width: 150px;
   background-color: black;
+  border-radius: 5px;
   color: white;
+}
+.greet {
+  font-size: 18pt;
+  color: whitesmoke;
+}
+a {
+  color: indigo;
+  margin: 5px 0;
 }
 .main-carousel {
   padding: 10px;
@@ -65,10 +93,45 @@ form h3 {
   width: 50%;
   padding: 0 !important;
 }
-.eventDiv {
+.h {
+  margin-bottom: 10px;
+  padding-top: 5px;
+}
+button {
+  cursor: pointer;
+}
+#close,
+.h {
+  text-align: center;
+}
+.favList,
+#close {
+  background-color: black;
+  border-radius: 5px;
+  color: red;
+}
+.favList {
+  padding: 5px 15px;
+}
+#close {
+  padding: 0 10px;
+}
+.eventDiv,
+#savedEvents {
   background-color: rgba(250, 219, 200, 0.8);
   padding: 15px;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#savedEvents {
+  display: none;
+  border-radius: 5px;
+  flex-direction: column;
+}
+.rowEvents {
+  display: flex;
+  justify-content: space-between;
 }
 .image {
   width: 100%;
