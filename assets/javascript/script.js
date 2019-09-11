@@ -1,3 +1,6 @@
+
+require("dotenv").config();
+
 var locations = [];
 
 var labels = [];
@@ -6,6 +9,8 @@ var userlong;
 var userlat;
 var token1;
 var genreText;
+
+
 window.onload = function() {
   displayEvent;
 };
