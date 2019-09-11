@@ -161,7 +161,7 @@ button {
 }
 
 #mainbody {
-  display: none;
+  /* display: none; */
 }
 
 #intro {
@@ -170,6 +170,7 @@ button {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   overflow:hidden;
 }
+
 
 
 .color {

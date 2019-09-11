@@ -380,13 +380,13 @@ getSpotifyToken();
 
 //firebase
 var config = {
-  apiKey: "AIzaSyC4Oa03PsGzQVoElWaQhppeLBDxINlYfYk",
-  authDomain: "pinme-270ea.firebaseapp.com",
-  databaseURL: "https://pinme-270ea.firebaseio.com",
-  projectId: "pinme-270ea",
-  storageBucket: "pinme-270ea.appspot.com",
-  messagingSenderId: "806008211699",
-  appId: "1:806008211699:web:f94ec750052f45f3"
+    apiKey: process.env.apiKey,
+    authDomain: process.env.authDomain,
+    databaseURL: process.env.databaseURL,
+    projectId: process.env.projectId,
+    storageBucket: process.env.storageBucket,
+    messagingSenderId: process.env.messagingSenderId,
+    appId: process.env.appId
 };
 // Initialize Firebase
 firebase.initializeApp(config);
